@@ -108,9 +108,11 @@ for (let i = 0; i < 81; i++) {
   newBoard[idxI][idxJ] = 0;
 }
 //////////////board
-
+            let validArr = [1,2,3,4,5,6,7,8,9];
           while(true){
-            let randomVal = (Math.random() * 9) | 0;
+            let randomIdx = (Math.random() * validArr.length) | 0;
+            randomVal = validArr[randomIdx];
+            validArr.remove(randomIdx);
             if(isValidToPlaceNumber(newBoard,idxI,idxJ,randomVal)){
               e.path[0].value = randomVal;
               e.path[0].classList.add("green");
