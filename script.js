@@ -84,8 +84,39 @@ function sudokuDesign() {
         }
         if (hintState && remainingHint > 0 && !e.path[0].classList.contains("clue") && !e.path[0].classList.contains("green")){
           console.log(idxI, idxJ);
-          e.path[0].value = filledBoard[idxI][idxJ];
-          e.path[0].classList.add("green");
+
+//////////////////////////board
+let newBoard = [];
+newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+
+let allCell = document.querySelectorAll(".input");
+
+for (let i = 0; i < 81; i++) {
+  let idxI = (allCell[i].classList[2].charAt(3) | 0) - 1;
+  let idxJ = (allCell[i].classList[3].charAt(3) | 0) - 1;
+  if(allCell[i].value != null)
+  newBoard[idxI][idxJ] = allCell[i].value;
+  else 
+  newBoard[idxI][idxJ] = 0;
+}
+//////////////board
+
+          while(true){
+            let randomVal = (Math.random() * 9) | 0;
+            if(isValidToPlaceNumber(newBoard,idxI,idxJ,randomVal)){
+              e.path[0].value = randomVal;
+              e.path[0].classList.add("green");
+              break;
+            }
+          }
           let hintBtn = document.querySelector(".hint");
           hintBtn.innerText = `Hint (${--remainingHint})`;
         } else {

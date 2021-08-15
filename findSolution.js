@@ -6,8 +6,8 @@
 let findSolution = function () {
   let sudokuSolverBtn = document.querySelector(".sudokuSolver");
   if (sudokuSolverBtn.classList.contains("select") && HowManyTimesFindSolution == 0) {
+      HowManyTimesFindSolution++;
     let newBoard = [];
-    HowManyTimesFindSolution++;
     newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
     newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
     newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);

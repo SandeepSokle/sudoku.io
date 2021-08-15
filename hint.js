@@ -18,6 +18,6 @@ let hintFun = (hints) => {
       sudokuSolverBtn.classList.add("select");
       hintState = true;
     }
-    console.log(hintState);
+    // console.log(hintState);
   
 };
