@@ -1,7 +1,3 @@
-
-
-
-
 let filledBoard = solveSudoku_01(board);
 let wrongEntryBtn = document.querySelector(".remainingWrongEntry");
 
@@ -32,11 +28,10 @@ let isValid = function (ele, e) {
 
   if (!isValidToPlaceNumber(newBoardForValidation, idxI, idxJ, e.key)) {
     ele[0].classList.add("wrongSelection");
-    remainingWromgEntry = remainingWromgEntry - 1 ;
+    remainingWromgEntry = remainingWromgEntry - 1;
     wrongEntryBtn.innerText = `${remainingWromgEntry}`;
-  
 
-    if(remainingWromgEntry <= 0){
+    if (remainingWromgEntry <= 0) {
       alert("You lose the Match");
       window.location.reload();
     }
@@ -78,42 +73,46 @@ function sudokuDesign() {
       input.addEventListener("click", (e) => {
         let idxI = (e.path[0].classList[2].charAt(3) | 0) - 1;
         let idxJ = (e.path[0].classList[3].charAt(3) | 0) - 1;
-        if(remainingHint <= 0 ){
+        if (remainingHint <= 0) {
           document.querySelector(".hint").classList.remove("select");
           hintState = false;
         }
-        if (hintState && remainingHint > 0 && !e.path[0].classList.contains("clue") && !e.path[0].classList.contains("green")){
+        if (
+          hintState &&
+          remainingHint > 0 &&
+          !e.path[0].classList.contains("clue") &&
+          !e.path[0].classList.contains("green")
+        ) {
           console.log(idxI, idxJ);
 
-//////////////////////////board
-let newBoard = [];
-newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
-newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
-newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
-newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
-newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
-newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
-newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
-newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
-newBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+          //////////////////////////board
+          let newBoard_02 = [];
+          newBoard_02.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+          newBoard_02.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+          newBoard_02.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+          newBoard_02.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+          newBoard_02.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+          newBoard_02.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+          newBoard_02.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+          newBoard_02.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+          newBoard_02.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
 
-let allCell = document.querySelectorAll(".input");
+          let allCell = document.querySelectorAll(".input");
 
-for (let i = 0; i < 81; i++) {
-  let idxI = (allCell[i].classList[2].charAt(3) | 0) - 1;
-  let idxJ = (allCell[i].classList[3].charAt(3) | 0) - 1;
-  if(allCell[i].value != null)
-  newBoard[idxI][idxJ] = allCell[i].value;
-  else 
-  newBoard[idxI][idxJ] = 0;
-}
-//////////////board
-            let validArr = [1,2,3,4,5,6,7,8,9];
-          while(true){
+          for (let i = 0; i < 81; i++) {
+            let idxI = (allCell[i].classList[2].charAt(3) | 0) - 1;
+            let idxJ = (allCell[i].classList[3].charAt(3) | 0) - 1;
+            if (allCell[i].value != null)
+              newBoard_02[idxI][idxJ] = allCell[i].value;
+            else newBoard_02[idxI][idxJ] = 0;
+          }
+          //////////////board
+          let validArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+          while (true) {
             let randomIdx = (Math.random() * validArr.length) | 0;
             randomVal = validArr[randomIdx];
-            validArr.remove(randomIdx);
-            if(isValidToPlaceNumber(newBoard,idxI,idxJ,randomVal)){
+            validArr.splice(randomIdx,randomIdx);
+            if (isValidToPlaceNumber(newBoard_02, idxI, idxJ, randomVal)) {
               e.path[0].value = randomVal;
               e.path[0].classList.add("green");
               break;
@@ -148,7 +147,5 @@ for (let i = 0; i < 81; i++) {
     container.appendChild(box);
   }
 }
-
-
 
 sudokuDesign();
